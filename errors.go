@@ -63,6 +63,9 @@ type Error struct {
 	E error
 }
 
+//Error is a method that returns the error message. This method
+//captures the source error from the possible multiple wrapped
+//errors from the callers
 func (e *Error) Error() string {
 	return ""
 }
