@@ -67,5 +67,6 @@ type Error struct {
 //captures the source error from the possible multiple wrapped
 //errors from the callers.
 func (e *Error) Error() string {
+
 	return ""
 }
