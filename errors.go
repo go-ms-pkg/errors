@@ -57,16 +57,21 @@ const (
 //T - type of error encountered (one of the pre-defined types)
 //E - wrapped error
 type Error struct {
-	L Layer
-	M Method
-	T Type
-	E error
+	l   Layer
+	m   Method
+	t   Type
+	e   error
+	msg string
 }
 
 //Error is a method that returns the error message. This method
-//captures the source error from the possible multiple wrapped
-//errors from the callers.
+//returns the error message set through errors.New().
 func (e *Error) Error() string {
+	return e.msg
+}
 
-	return ""
+//New is a method that returns an error struct with the defined
+//error message. Used with Error() to return error message.
+func New(msg string) error {
+	return &Error{msg: msg}
 }
