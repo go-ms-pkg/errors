@@ -1,7 +1,30 @@
 package errors
 
-import "testing"
+import (
+	"fmt"
+	"reflect"
+	"testing"
+)
 
-func TestError(t *testing.T) {
+func TestNew(t *testing.T) {
+	//Test Cases
+	scenarios := []struct {
+		//Parameters
+		msg string
+		//Result
+		err error
+	}{
+		{"MOCK MSG", &Error{msg: "MOCK MSG"}},
+	}
+
+	//Run Tests
+	for index, scenario := range scenarios {
+		t.Run(fmt.Sprintf("Case%d", index+1), func(t *testing.T) {
+			err := New(scenario.msg)
+			if !reflect.DeepEqual(err, scenario.err) {
+				t.Errorf("Actual '%v' | Expected '%v'", err, scenario.err)
+			}
+		})
+	}
 
 }
