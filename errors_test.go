@@ -29,5 +29,29 @@ func TestNew(t *testing.T) {
 			}
 		})
 	}
+}
 
+func TestError(t *testing.T) {
+	//Test Cases
+	scenarios := []struct {
+		//Parameters
+		msg string
+		//Result
+		errMsg string
+	}{
+		{"MOCK_MSG", "MOCK_MSG"},
+		{"", ""},
+		{"123456789", "123456789"},
+		{"!@#$%^&*()", "!@#$%^&*()"},
+	}
+
+	//Run Tests
+	for index, scenario := range scenarios {
+		t.Run(fmt.Sprintf("Case%d", index+1), func(t *testing.T) {
+			err := New(scenario.msg)
+			if scenario.errMsg != err.Error() {
+				t.Errorf("Actual '%v' | Expected '%v'", err.Error(), scenario.errMsg)
+			}
+		})
+	}
 }
