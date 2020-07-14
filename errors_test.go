@@ -15,6 +15,9 @@ func TestNew(t *testing.T) {
 		err error
 	}{
 		{"MOCK MSG", &Error{msg: "MOCK MSG"}},
+		{"", &Error{msg: ""}},
+		{"1234567890", &Error{msg: "1234567890"}},
+		{"!@#$%^&*()", &Error{msg: "!@#$%^&*()"}},
 	}
 
 	//Run Tests
